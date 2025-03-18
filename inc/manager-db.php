@@ -66,3 +66,17 @@ function getContinents() {
     $query = 'SELECT DISTINCT Continent FROM Country;';
     return $pdo->query($query)->fetchAll();
 }
+
+function getCapitale($num) {
+    global $pdo;
+    $query = 'SELECT DISTINCT Name FROM City WHERE id = :num;';
+    $prep = $pdo->prepare($query);
+    $prep->bindValue(':num', $num, PDO::PARAM_STR);
+    $prep->execute();
+    $result = $prep->fetch(PDO::FETCH_ASSOC);
+    if ($result) {
+        return $result['Name'];
+    } else {
+        return 'Inconnu';
+    }
+}
