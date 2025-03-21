@@ -46,13 +46,13 @@ if (isset($_GET['name']) && !empty($_GET['name']) ){
             <td> <?php echo $pays->Continent ?></td>
             <td> <?php echo getCapitale($pays->Capital) ?></td>
           </tr>
-        <?php } ?>
+          <?php } ?>
      </table>
     </div>
     <p>
         <code>
       <?php
-        var_dump($desPays[0]);
+        var_dump($desPays[0]->Name);
         ?>
         </code>
     </p>
@@ -70,7 +70,7 @@ if (isset($_GET['name']) && !empty($_GET['name']) ){
           par exemple de type <b><code>foreach</code></b> sur l'ensembles des objets de ce tableau. </p>
         <p>Référez-vous à la structure des tables SQL pour connaître le nom des <b><code>attributs</code></b>.
           En effet, les objets du tableau ont pour attributs les noms des colonnes de la table interrogée par un requête SQL, via l'appel à la
-          fonction <b><code>getCountriesByContinent</code></b> (du script <b><code>manager-db.php</code></b>.</p>
+          fonction <b><code>getCountriesByContinent</code></b> du script <b><code>manager-db.php</code></b>.</p>
         <p>Par exemple <b><code>Name</code></b> est une des colonnes de la table <b><code>Country</code></b> de la base de données.</p>
           <p> Bonne programmation</p>
           <div class="alert alert-warning" role="alert">
