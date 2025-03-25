@@ -83,14 +83,9 @@ function getCapitale($num) {
 
 function getInfo() {
     global $pdo;
-    $query = 'SELECT DISTINCT * FROM Country WHERE Code;';
+    $query = 'SELECT DISTINCT * FROM Country WHERE id;';
     $prep = $pdo->prepare($query);
-    $prep->bindValue(':num', $num, PDO::PARAM_STR);
+    $prep->bindValue(':idPays', $idPays, PDO::PARAM_STR);
     $prep->execute();
-    $result = $prep->fetch(PDO::FETCH_ASSOC);
-    if ($result) {
-        return $result['Name'];
-    } else {
-        return 'Inconnu';
-    }
+    $result = $prep->fetch();
 }
