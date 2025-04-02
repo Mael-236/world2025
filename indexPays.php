@@ -17,45 +17,26 @@
 <?php
 require_once 'inc/manager-db.php';
 if (isset($_GET['name']) && !empty($_GET['name']) ){
-  $nomPays = ($_GET['name']);
-  $infoPays = getInfo();
+  $name = ($_GET['name']);
+  $pays = getDetails($name);
   }
-  else{
-  $nomPays = "Monde";
-  $desPays = getAllCountries();
-  }
-  $data = [
-    'code' => 'FRA',
-    'continent' => 'Europe',
-    'capitale' => 'Paris',
-    'population' => '59,225,700',
-    'superficie' => '551500',
-    'langues' => [
-        ['nom' => 'French', 'pourcentage' => 93.6],
-        ['nom' => 'Arabic', 'pourcentage' => 2.5],
-        ['nom' => 'Portuguese', 'pourcentage' => 1.2],
-        ['nom' => 'Spanish', 'pourcentage' => 0.4],
-        ['nom' => 'Italian', 'pourcentage' => 0.4],
-        ['nom' => 'Turkish', 'pourcentage' => 0.4]
-    ],
-    'pnb' => '1,424,285.00',
-    'chef_etat' => 'Jacques Chirac',
-    'esperance_vie' => 78.8
-];
+  
 ?>
 <main role="main" class="flex-shrink-0">
 
   <div class="text-center">
-    <h1><?= $nomPays; ?></h1>
-      <?php $source=strtolower($infoPays->Code2).".png"; ?>
+    <h1><?= $pays->Name; ?></h1>
+    <?php 
+      $source=strtolower($pays->Code2).".png"; ?>
           <img src="images/flag/<?= $source;?>" height="60" width="90">
+    
     <div>
      <table class="table table-bordered">
-            <tr><th>Code</th><td><?= $data['code'] ?></td></tr>
-            <tr><th>Continent</th><td><?= $data['continent'] ?></td></tr>
-            <tr><th>Capitale</th><td><?= $data['capitale'] ?></td></tr>
-            <tr><th>Population</th><td><?= $data['population'] ?></td></tr>
-            <tr><th>Superficie</th><td><?= $data['superficie'] ?> km²</td></tr>
+            <tr><th>Code</th><td><?= $pays->Code; ?></td></tr>
+            <tr><th>Continent</th><td><?= $pays->Continent; ?></td></tr>
+            <tr><th>Capitale</th><td><?= getCapitale($pays->Capital); ?></td></tr>
+            <tr><th>Population</th><td><?= $pays->Population; ?></td></tr>
+            <tr><th>Superficie</th><td><?= $pays->SurfaceArea; ?> km²</td></tr>
      </table>
     </div>
   </div>

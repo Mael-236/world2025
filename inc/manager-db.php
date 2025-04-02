@@ -81,11 +81,25 @@ function getCapitale($num) {
     }
 }
 
-function getInfo() {
+function getInfo($id)
+{
     global $pdo;
-    $query = 'SELECT DISTINCT * FROM Country WHERE id;';
+    $query = 'SELECT * FROM Country WHERE id = :id;';
     $prep = $pdo->prepare($query);
-    $prep->bindValue(':idPays', $idPays, PDO::PARAM_STR);
+    $prep->bindValue(':id', $id, PDO::PARAM_INT);
+    $prep->execute();
+   
+    return $prep->fetch();
+
+}
+
+function getDetails($name)
+{
+    global $pdo;
+    $query = 'SELECT * FROM Country WHERE Name = :nom;';
+    $prep = $pdo->prepare($query);
+    $prep->bindValue(':nom', $name, PDO::PARAM_INT);
     $prep->execute();
     $result = $prep->fetch();
+    return $result;
 }
