@@ -79,19 +79,7 @@ function getCapitale($num) {
     } else {
         return 'Inconnu';
     }
-}
-
-function getInfo($id)
-{
-    global $pdo;
-    $query = 'SELECT * FROM Country WHERE id = :id;';
-    $prep = $pdo->prepare($query);
-    $prep->bindValue(':id', $id, PDO::PARAM_INT);
-    $prep->execute();
-   
-    return $prep->fetch();
-
-}
+}  
 
 function getDetails($name)
 {
@@ -101,5 +89,24 @@ function getDetails($name)
     $prep->bindValue(':nom', $name, PDO::PARAM_INT);
     $prep->execute();
     $result = $prep->fetch();
+    return $result;
+}
+
+function getInfo($info) {
+    global $pdo;
+    $query = 'SELECT * FROM CountryLanguage WHERE idCountry = :info;';
+    $prep = $pdo->prepare($query);
+    $prep->bindValue(':info', $info, PDO::PARAM_INT);
+    $prep->execute();
+    $result = $prep->fetch();
+    return $result;
+}
+
+function getLangue()
+{
+    global $pdo;
+    $query = 'SELECT Language.Name as Langue, Percentage FROM Country, Language, CountryLanguage WHERE idCountry = Country.id AND idLanguage = Language.id;';
+    $prep = $pdo->prepare($query);
+    $result = $prep->fetchAll();
     return $result;
 }

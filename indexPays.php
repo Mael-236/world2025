@@ -16,11 +16,10 @@
 <?php  require_once 'header.php'; ?>
 <?php
 require_once 'inc/manager-db.php';
-if (isset($_GET['name']) && !empty($_GET['name']) ){
-  $name = ($_GET['name']);
-  $pays = getDetails($name);
-  }
-  
+$name = ($_GET['name']);
+$pays = getDetails($name);
+$id = getLangue();
+$info = getInfo($name)
 ?>
 <main role="main" class="flex-shrink-0">
 
@@ -46,16 +45,15 @@ if (isset($_GET['name']) && !empty($_GET['name']) ){
         <h4 class="mt-4">Langues parlées</h4>
         <table class="table table-striped">
             <tr><th>Nom</th><th>Pourcentage</th></tr>
-            <?php foreach ($data['langues'] as $langue): ?>
-                <tr><td><?= $langue['nom'] ?></td><td><?= $langue['pourcentage'] ?>%</td></tr>
-            <?php endforeach; ?>
+                <tr><td><?= $id->Langue; ?></td>
+                <td><?= $id->Percentage; ?>%</td></tr>
         </table>
         <h4 class="mt-4">Données économiques et sociales</h4>
         <table class="table table-bordered">
-            <tr><th>Population</th><td><?= $data['population'] ?></td></tr>
-            <tr><th>PNB</th><td><?= $data['pnb'] ?></td></tr>
-            <tr><th>Chef d'État</th><td><?= $data['chef_etat'] ?></td></tr>
-            <tr><th>Espérance de vie</th><td><?= $data['esperance_vie'] ?></td></tr>
+            <tr><th>Population</th><td><?= 0 ?></td></tr>
+            <tr><th>PNB</th><td><?= 0 ?></td></tr>
+            <tr><th>Chef d'État</th><td><?= 0 ?></td></tr>
+            <tr><th>Espérance de vie</th><td><?= 0 ?></td></tr>
         </table>
         <h4 class="mt-4">Données actualisées</h4>
         <form>
